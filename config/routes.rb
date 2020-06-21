@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :withdraws
   resources :deposits
   resources :accounts
   get 'wellcome/index'
