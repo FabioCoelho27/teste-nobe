@@ -4,7 +4,7 @@ class DepositsController < ApplicationController
   # GET /deposits
   # GET /deposits.json
   def index
-    @deposits = Deposit.all
+    @deposits = current_user.account.deposits
   end
 
   # GET /deposits/1
@@ -24,7 +24,7 @@ class DepositsController < ApplicationController
   # POST /deposits
   # POST /deposits.json
   def create
-    @deposit = Deposit.new(deposit_params)
+    @deposit = current_user.account.deposits.new(deposite_params)
 
     respond_to do |format|
       if @deposit.save
