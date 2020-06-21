@@ -6,7 +6,7 @@ class Transfer < ApplicationRecord
   def increment_decrement_balance
     #decrement self account
     last_balance = self.account.get_balance
-    decrement = self.amount.to_f
+    decrement = self.amount.to_f + get_tax
     new_balance = last_balance - decrement
     balance = self.balances.create(
       account_id: self.account.id,
@@ -22,6 +22,18 @@ class Transfer < ApplicationRecord
       account_id: account.id,
       account: new_balance
     )
+  end
+  
+  def get_tax
+    if self.amount.to_f >= 1000
+      tax = 10
+    elsif Time.now.on_weekday?
+      if Time.now >="09:00".to_time && Time.now <= "18:00".to_time
+        tax = 5
+      end
+    else
+      tax = 7
+    end
   end
 
 
