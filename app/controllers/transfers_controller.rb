@@ -1,5 +1,6 @@
 class TransfersController < ApplicationController
   before_action :set_transfer, only: [:show, :edit, :update, :destroy]
+  before_action :verify_transfer, only: [:create]
 
   # GET /transfers
   # GET /transfers.json
@@ -24,7 +25,7 @@ class TransfersController < ApplicationController
   # POST /transfers
   # POST /transfers.json
   def create
-    @transfer = Transfer.new(transfer_params)
+    @transfer = current_user.account.transfers.new(transfer_params)
 
     respond_to do |format|
       if @transfer.save
@@ -62,6 +63,25 @@ class TransfersController < ApplicationController
   end
 
   private
+
+    def verify_transfer
+      account_to = Account.find_by(id: transfer_params[:account_to])
+      @transfer = current_user.account.transfers.new(transfer_params)
+      last_balance = current_user.account.get_balance
+      if @transfer.amount.to_f > last_balance
+        @transfer.errors.add(:message, "Insuficient founds to transfer")
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @transfer.errors, status: :unprocessable_entity}
+        end
+      elsif account_to.nil?
+        @transfer.errors.add(:message, 'Account not found')
+        respond_to do |format|
+          format.html { render :edit }
+          format.json { render json: @transfer.errors, status: :unprocessable_entity}
+        end
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_transfer
       @transfer = Transfer.find(params[:id])

@@ -24,7 +24,7 @@ class DepositsController < ApplicationController
   # POST /deposits
   # POST /deposits.json
   def create
-    @deposit = current_user.account.deposits.new(deposite_params)
+    @deposit = current_user.account.deposits.new(deposit_params)
 
     respond_to do |format|
       if @deposit.save
