@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_190110) do
+ActiveRecord::Schema.define(version: 2020_06_21_190225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 2020_06_21_190110) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "balances", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "deposit_id"
+    t.bigint "withdraw_id"
+    t.bigint "transfer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_balances_on_account_id"
+    t.index ["deposit_id"], name: "index_balances_on_deposit_id"
+    t.index ["transfer_id"], name: "index_balances_on_transfer_id"
+    t.index ["withdraw_id"], name: "index_balances_on_withdraw_id"
   end
 
   create_table "deposits", force: :cascade do |t|
@@ -61,6 +74,10 @@ ActiveRecord::Schema.define(version: 2020_06_21_190110) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "balances", "accounts"
+  add_foreign_key "balances", "deposits"
+  add_foreign_key "balances", "transfers"
+  add_foreign_key "balances", "withdraws"
   add_foreign_key "deposits", "accounts"
   add_foreign_key "transfers", "accounts"
   add_foreign_key "withdraws", "accounts"
