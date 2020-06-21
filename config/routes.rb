@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :accounts
   get 'wellcome/index'
   devise_for :users
   root to:"wellcome#index"
