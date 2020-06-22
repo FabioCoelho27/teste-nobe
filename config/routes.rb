@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'balance/index'
   resources :transfers
   resources :withdraws
   resources :deposits
