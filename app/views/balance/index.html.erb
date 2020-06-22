@@ -1,2 +1,18 @@
-<h1>Balance#index</h1>
-<p>Find me in app/views/balance/index.html.erb</p>
+<h1>Extrato</h1>
+<table style='width:100%'>
+
+  <tr>
+    <th>Balance</th>
+    <th>Transaction Type</th>
+    <th>Transaction Value</th>
+    <th>Transaction Date</th>
+  </tr>
+  <% @balances.each do |balance| %>
+    <tr>
+      <td><%= balance.try(:amount) %></td>
+      <td><%= balance.try(:get_type) %></td>
+      <td><%= balance.try(:get_value) %></td>
+      <td><%= balance.try(:created_at) %></td>
+    </tr>
+  <% end %>
+</table>
