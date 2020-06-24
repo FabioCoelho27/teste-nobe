@@ -1,25 +1,38 @@
 <h1>Extrato</h1>
 <form action='/balance/index'>
-  <label for='start_date'>Data Inicial:</label>
-  <input type='date' id='start_date' name='start_date'>
-  <label for='end_date'>Data Final:</label>
-  <input type='date' id='end_date' name='end_date'>
-  <input type='submit' value='Buscar'>
+  <div class="row">
+    <div class="col">
+      <label for='start_date'>Data Inicial:</label>
+      <input type='date' id='start_date' name='start_date'>
+    </div>
+    <div class="col">
+      <label for='end_date'>Data Final:</label>
+       <input type='date' id='end_date' name='end_date'>
+    </div>
+    <div class="col">
+      <input type='submit' value='Buscar'>
+    </div>
+  </div>
 </form>
 <br>
-<table style='width:100%'>
-  <tr>
-    <th>Balance</th>
-    <th>Transaction Type</th>
-    <th>Transaction Value</th>
-    <th>Transaction Date</th>
-  </tr>
-  <% @balances.each do |balance| %>
+
+<table class="table table-hover">
+  <thead>
     <tr>
-      <td><%= balance.try(:amount) %></td>
-      <td><%= balance.try(:get_type) %></td>
-      <td><%= balance.try(:get_value) %></td>
-      <td><%= balance.try(:created_at) %></td>
+      <th scope="col">Saldo</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Data</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @balances.each do |balance| %>
+      <tr>
+        <td><%= balance.try(:amount) %></td>
+        <td><%= balance.try(:get_type) %></td>
+        <td><%= balance.try(:get_value) %></td>
+        <td><%= balance.try(:created_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

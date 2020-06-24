@@ -1,23 +1,35 @@
-<%= form_with(model: withdraw, local: true) do |form| %>
-  <% if withdraw.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(withdraw.errors.count, "error") %> prohibited this withdraw from being saved:</h2>
+<%= form_for @withdraw, :html => { :class => "form-horizontal withdraw" } do |f| %>
 
-      <ul>
-      <% withdraw.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @withdraw.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@withdraw.errors.count, "error") %> prohibited this withdraw from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @withdraw.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
+  <div class="form-group">
+    <%= f.label :amount, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :amount, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:amount) %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'voltar', wellcome_index_path, class: 'btn btn-warning' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                withdraws_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <% end %>

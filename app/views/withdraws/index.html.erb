@@ -1,29 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Withdraws</h1>
-
-<table>
+<%- model_class = Withdraw -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Account</th>
-      <th>Amount</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:account_id) %></th>
+      <th><%= model_class.human_attribute_name(:amount) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @withdraws.each do |withdraw| %>
       <tr>
-        <td><%= withdraw.account %></td>
+        <td><%= link_to withdraw.id, withdraw_path(withdraw) %></td>
+        <td><%= withdraw.account_id %></td>
         <td><%= withdraw.amount %></td>
-        <td><%= link_to 'Show', withdraw %></td>
-        <td><%= link_to 'Edit', edit_withdraw_path(withdraw) %></td>
-       
+        <td><%=l withdraw.created_at %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      withdraw_path(withdraw), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_withdraw_path(withdraw), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      withdraw_path(withdraw),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Withdraw', new_withdraw_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_withdraw_path,
+            :class => 'btn btn-primary' %>

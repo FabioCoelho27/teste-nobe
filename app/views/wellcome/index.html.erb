@@ -1,16 +1,2 @@
-<h1>Wellcome to BankNobe</h1>
-<h2>Saldo: </h2>
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path  %> |
-  <%= link_to "Login", new_user_session_path%>
-<% end %>
-<ul>
-  <li><%= link_to "Depositos", deposits_path %></li>
-  <li><%= link_to "Saques", withdraws_path %></li>
-  <li><%= link_to "Transferencias", transfers_path %></li>
-  <li><%= link_to "Extrato", balance_index_path %></li>
-</ul>
+<h1>Bem Vindo ao Banco Nobe</h1>
+<h2>Saldo: <%= @balance %></h2>

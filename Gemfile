@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+  
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -38,6 +38,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Devise
 gem 'devise'
+#Botstrap Views
+gem 'devise-bootstrap-views' 
+# Tranlation i18n
+gem 'devise-i18n'
+
+gem "therubyracer"
+
+gem "less-rails"
+
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
