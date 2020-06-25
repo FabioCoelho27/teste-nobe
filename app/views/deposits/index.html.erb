@@ -17,18 +17,12 @@
       <tr>
         <td><%= link_to deposit.id, deposit_path(deposit) %></td>
         <td><%= deposit.account_id %></td>
-        <td><%= deposit.amount %></td>
+        <td><%= Extenso.real_formatado(deposit.amount) %></td>
         <td><%=l deposit.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       deposit_path(deposit), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_deposit_path(deposit), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      deposit_path(deposit),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+          
         </td>
       </tr>
     <% end %>
@@ -38,4 +32,3 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_deposit_path,
             :class => 'btn btn-primary' %>
-<%= link_to 'Voltar', wellcome_index_path, :class => 'btn btn-warning' %>

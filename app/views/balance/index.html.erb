@@ -26,13 +26,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @balances.each do |balance| %>
-      <tr>
-        <td><%= balance.try(:amount) %></td>
-        <td><%= balance.try(:get_type) %></td>
-        <td><%= balance.try(:get_value) %></td>
-        <td><%= balance.try(:created_at) %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% @balances.each do |balance| %>
+    <tr>
+      <td><%= Extenso.real_formatado(balance.try(:amount)) %></td>
+      <td><%= balance.try(:get_type) %></td>
+      <td><%= Extenso.real_formatado(balance.try(:get_value)) %></td>
+      <td><%= balance.try(:created_at) %></td>
+    </tr>
+  <% end %>
 </table>

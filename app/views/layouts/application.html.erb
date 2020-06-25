@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TesteNobe</title>
+    <title>Bankmax</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    #<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
+
   <body>
-    <% if user_signed_in?%>
-      <%= nav_bar fixed: :top, responsive: true do  %>
+    <% if user_signed_in? %>
+      <%= nav_bar fixed: :top, responsive: true do %>
         <%= menu_group pull: :left do %>
-          <%= menu_item 'Home', root_path %>
-        <% end %>
-         <%= menu_group pull: :left do %>
-          <%= menu_item 'Saques', withdraws_path %>
+          <%= menu_item t('activerecord.models.wellcome.one'), root_path %>
         <% end %>
         <%= menu_group pull: :left do %>
-          <%= menu_item 'Depósitos', deposits_path %>
+          <%= menu_item t('activerecord.models.deposit.others'), deposits_path %>
         <% end %>
-         <%= menu_group pull: :left do %>
-          <%= menu_item 'Transferências', transfers_path %>
+        <%= menu_group pull: :left do %>
+          <%= menu_item t('activerecord.models.withdraw.others'), withdraws_path %>
         <% end %>
-         <%= menu_group pull: :left do %>
-          <%= menu_item 'Extratos', balance_index_path %>
+        <%= menu_group pull: :left do %>
+          <%= menu_item t('activerecord.models.transfer.others'), transfers_path %>
+        <% end %>
+        <%= menu_group pull: :left do %>
+          <%= menu_item t('activerecord.models.balance.others'), balance_index_path %>
         <% end %>
         <%= menu_group pull: :right do %>
           <% if current_user %>
-            <%= menu_item 'Log Out', destroy_user_session_path %>
+            <%= menu_item t('activerecord.models.wellcome.sign_out'), destroy_user_session_path %>
           <% else %>
-            <%= form_for @user, url: session_path(:user), html => {class: 'navbar-form pull-right'} do |f| %>
+            <%= form_for @user, url: session_path(:user), html => {class: "navbar-form pull-right"} do |f| -%>
               <p><%= f.text_field :email %></p>
               <p><%= f.password_field :password %></p>
-              <p><%= f.submit 'Sign in' %></p>
-            <% end %>
+              <p><%= f.submit t('activerecord.models.wellcome.sign_in') %></p>
+            <% end -%>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
     <div class="container">
       <% if notice %>
-        <p class="alert alert-success"><%= notice %>></p>
+        <p class="alert alert-success"><%= notice %></p>
       <% end %>
-      <% if notice %>
-        <p class="alert alert-danger"><%= alert %>></p>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
       <% end %>
       <%= yield %>
     </div>
-
   </body>
 </html>

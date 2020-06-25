@@ -29,7 +29,7 @@ class TransfersController < ApplicationController
 
     respond_to do |format|
       if @transfer.save
-        format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
+        format.html { redirect_to @transfer, notice: 'Transferência realizada com sucesso.' }
         format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }

@@ -28,7 +28,9 @@ module TesteNobe
     # the framework and any gems in your application.
 
     # Don't generate system test files.
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.generators.system_tests = nil
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.default_locale = :"pt-BR"
 
   end

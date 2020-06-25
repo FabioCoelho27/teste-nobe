@@ -5,7 +5,7 @@ class Account < ApplicationRecord
   has_many :transfers
   has_many :balances
 
-
+  
   def get_balance
     balance = self.try(:balances).try(:last).try(:amount)
     if balance.present?

@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_190225) do
     t.bigint "deposit_id"
     t.bigint "withdraw_id"
     t.bigint "transfer_id"
+    t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_balances_on_account_id"
@@ -45,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_06_21_190225) do
 
   create_table "transfers", force: :cascade do |t|
     t.bigint "account_id"
-    t.decimal "amount"
+    t.decimal "amount", default: "0.0"
     t.integer "account_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

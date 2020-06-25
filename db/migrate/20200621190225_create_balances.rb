@@ -5,6 +5,7 @@ class CreateBalances < ActiveRecord::Migration[5.2]
       t.references :deposit, foreign_key: true
       t.references :withdraw, foreign_key: true
       t.references :transfer, foreign_key: true
+      t.decimal :amount
 
       t.timestamps
     end
