@@ -5,7 +5,7 @@ class TransfersController < ApplicationController
   # GET /transfers
   # GET /transfers.json
   def index
-    @transfers = Transfer.all
+    @transfers = current_user.account.transfers
   end
 
   # GET /transfers/1
@@ -26,10 +26,10 @@ class TransfersController < ApplicationController
   # POST /transfers.json
   def create
     @transfer = current_user.account.transfers.new(transfer_params)
-
     respond_to do |format|
       if @transfer.save
-        format.html { redirect_to @transfer, notice: 'Transferência realizada com sucesso.' }
+        BankOperations.increment_decrement(@transfer.id, @transfer.account_to, @transfer.amount)
+        format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
         format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }

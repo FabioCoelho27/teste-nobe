@@ -60,6 +60,9 @@ GEM
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     database_cleaner (1.8.5)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -73,11 +76,11 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     extensobr (0.1.2)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.0.2)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.0.0)
+      factory_bot (~> 6.0.0)
+      railties (>= 5.0.0)
     faker (2.13.0)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
@@ -190,8 +193,6 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    shoulda-matchers (3.1.3)
-      activesupport (>= 4.0.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -239,12 +240,12 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   coffee-rails (~> 4.2)
-  database_cleaner
+  database_cleaner-active_record
   devise
   devise-bootstrap-views
   devise-i18n
   extensobr
-  factory_girl_rails
+  factory_bot_rails
   faker
   jbuilder (~> 2.5)
   less-rails
@@ -256,7 +257,6 @@ DEPENDENCIES
   rails_12factor
   rspec-rails (~> 4.0.0)
   sass-rails (~> 5.0)
-  shoulda-matchers (~> 3.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   therubyracer

@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   after_create :create_account
   has_one :account
-  def create_account
-    Account.create(user_id: self.id)
-  end
+
+  validates :email, uniqueness: true
 end
