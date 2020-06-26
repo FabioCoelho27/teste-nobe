@@ -2,7 +2,7 @@ require "rails_helper"
 RSpec.describe Deposit, :type => :model do
   
   before(:all) do
-    @user = create(:user)
+    @user = create(:user, email:'teste3@teste.com')
     @account = create(:account, user: @user)
     @deposit1 = create(:deposit)
   end

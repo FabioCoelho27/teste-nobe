@@ -2,7 +2,7 @@ require "rails_helper"
 RSpec.describe Transfer, :type => :model do
   
   before(:all) do
-    @user = create(:user)
+    @user = create(:user, email:'teste4@teste.com')
     @account = create(:account, user: @user)
     @transfer1 = create(:transfer)
   end
