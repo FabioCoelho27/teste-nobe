@@ -29,7 +29,7 @@ class TransfersController < ApplicationController
     respond_to do |format|
       if @transfer.save
         BankOperations.increment_decrement(@transfer.id, @transfer.account_to, @transfer.amount)
-        format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
+        format.html { redirect_to @transfer, notice: 'Transferência efetuada com sucesso.' }
         format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }
@@ -69,13 +69,13 @@ class TransfersController < ApplicationController
       @transfer = current_user.account.transfers.new(transfer_params)
       last_balance = current_user.account.get_balance
       if @transfer.amount.to_f > last_balance
-        @transfer.errors.add(:message, "Insuficient founds to transfer")
+        @transfer.errors.add(:message, "Saldo insuficiente")
         respond_to do |format|
           format.html { render :edit }
           format.json { render json: @transfer.errors, status: :unprocessable_entity}
         end
       elsif account_to.nil?
-        @transfer.errors.add(:message, 'Account not found')
+        @transfer.errors.add(:message, 'Conta não encontrada')
         respond_to do |format|
           format.html { render :edit }
           format.json { render json: @transfer.errors, status: :unprocessable_entity}

@@ -28,7 +28,7 @@ class WithdrawsController < ApplicationController
     @withdraw = current_user.account.withdraws.new(withdraw_params)
     respond_to do |format|
       if @withdraw.save
-        format.html { redirect_to @withdraw, notice: 'Withdraw was successfully created.' }
+        format.html { redirect_to @withdraw, notice: 'Saque efetuado com sucesso.' }
         format.json { render :show, status: :created, location: @withdraw }
       else
         format.html { render :new }
@@ -66,7 +66,7 @@ class WithdrawsController < ApplicationController
       @withdraw = current_user.account.withdraws.new(withdraw_params)
       last_balance = current_user.account.get_balance
       if @withdraw.amount.to_f > last_balance
-        @withdraw.errors.add(:message, "Insuficient founds to withdraw")
+        @withdraw.errors.add(:message, "Saldo insuficiente")
         respond_to do |format| 
           format.html { render :edit}
           format.json {render json: @withdraw.erros, status: :unprocessable_entity}

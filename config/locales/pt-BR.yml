@@ -2,6 +2,9 @@
     pt-BR:
       activerecord:
         models:
+          account:
+            one: Conta
+            other: Contas
           wellcome:
             one: Início
             sign_out: Sair
@@ -12,6 +15,7 @@
           withdraw:
             one: Saque
             others: Saques
+            new: Novo
           transfer:
             one: Transferência
             others: Transferências
@@ -23,7 +27,19 @@
             amount: valor
             created_at: criado em
             account_id: conta
-            
+        #######################################
+          withdraw:
+            new: novo
+            amount: Valor
+            created_at: Efetuado em
+            account_id: conta
+        #######################################
+          transfer:
+            account_id: conta
+            amount: Valor
+            created_at: Realizada
+            account_to: Para conta
+            account_not_found: Conta não encontrada.
         errors:
           messages:
             record_invalid: 'A validação falhou: %{errors}'
