@@ -1,5 +1,8 @@
 require "rails_helper"
 RSpec.describe Transfer, :type => :model do
+
+  it { is_expected.to belong_to(:account) }
+  it { is_expected.to respond_to(:amount) }
   
   before(:all) do
     @user = create(:user, email:'teste4@teste.com')
