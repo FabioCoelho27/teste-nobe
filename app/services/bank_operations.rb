@@ -1,5 +1,4 @@
 module BankOperations
-
   def self.get_balance(account)
     balance = Account.find(account).try(:balances).try(:last).try(:amount)
     if balance.present?
@@ -59,7 +58,7 @@ module BankOperations
 
   def self.get_tax(amount)
     tax = 7
-    tax = 10 if amount.to_f >= 1000
+    tax = tax + 10 if amount.to_f >= 1000
     if Time.now.on_weekday?
       tax = 5 if Time.now >= "09:00".to_time && Time.now <= "18:00".to_time
     end

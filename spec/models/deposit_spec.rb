@@ -5,6 +5,8 @@ RSpec.describe Deposit, :type => :model do
   it { is_expected.to respond_to(:increment_balance) }
   it { is_expected.to respond_to(:amount) }
   it { is_expected.to have_many(:balances)}
+  it { is_expected.to validate_numericality_of(:amount)} 
+  
   
   before(:all) do
     @user = create(:user, email:'teste3@teste.com')

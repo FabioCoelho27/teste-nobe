@@ -1,5 +1,9 @@
 require "rails_helper"
 RSpec.describe Withdraw, :type => :model do
+
+  it { is_expected.to validate_numericality_of(:amount)}
+  it { is_expected.to belong_to(:account)}
+  it { is_expected.to respond_to(:account)}
   
   before(:all) do
     @user = create(:user, email:'teste5@teste.com')

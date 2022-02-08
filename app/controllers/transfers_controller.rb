@@ -68,7 +68,7 @@ class TransfersController < ApplicationController
       account_to = Account.find_by(id: transfer_params[:account_to])
       @transfer = current_user.account.transfers.new(transfer_params)
       last_balance = current_user.account.get_balance
-      if @transfer.amount.to_f > last_balance
+      if @transfer.amount.to_f + BankOperations.get_tax(@transfer.amount)  > last_balance
         @transfer.errors.add(:message, "Saldo insuficiente")
         respond_to do |format|
           format.html { render :edit }

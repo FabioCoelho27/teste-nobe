@@ -6,5 +6,5 @@ class User < ApplicationRecord
   after_create :create_account
   has_one :account
 
-  validates :email, uniqueness: true
+  validates :email, uniqueness:{ case_sensitive: false }
 end
