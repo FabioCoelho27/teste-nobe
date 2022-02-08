@@ -75,6 +75,39 @@ RSpec.describe "BankOperations API", type: :request do
       end
     end
   end
+  describe '.get_tax' do
+    context 'when the amount is greater than or equal to 1000' do
+      context 'and now is a weekday but is not a business hour' do
+        it 'returns 17' do
+          time = double(on_weekday?: true, hour: 8)
+
+          tax = BankOperations.get_tax(1001, time: time)
+
+          expect(tax).to be == 17
+        end
+      end
+
+      context 'and now is a weekday but is a business hour' do
+        it 'returns 5' do
+          time = double(on_weekday?: true, hour: 9)
+
+          tax = BankOperations.get_tax(980, time: time)
+
+          expect(tax).to be == 5
+        end
+      end
+
+      context 'and now is a weekday but is a business hour' do
+        it 'returns 15' do
+          time = double(on_weekday?: true, hour: 9)
+
+          tax = BankOperations.get_tax(5000, time: time)
+
+          expect(tax).to be == 15
+        end
+      end
+    end
+  end
   
 end
 

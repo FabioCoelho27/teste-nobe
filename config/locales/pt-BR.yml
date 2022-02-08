@@ -15,7 +15,6 @@
           withdraw:
             one: Saque
             others: Saques
-            new: Novo
           transfer:
             one: Transferência
             others: Transferências
