@@ -97,7 +97,7 @@ RSpec.describe "BankOperations API", type: :request do
         end
       end
 
-      context 'and now is a weekday but is a business hour' do
+      context 'and now is a weekday but is a not business hour' do
         it 'returns 15' do
           time = double(on_weekday?: true, hour: 9)
 
